@@ -15,6 +15,7 @@ class InputHandler {
         sanitizer = new InputSanitizer();
     }
 
+    //https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
     List<QuadraticCoefficients> parseInputFile(String filepath) throws IOException {
         FileReader reader = new FileReader(filepath);
         BufferedReader buffer = new BufferedReader(reader);
