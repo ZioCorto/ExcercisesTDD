@@ -3,20 +3,28 @@ package guru.springframework.unittest.quickstart;
 import java.util.List;
 
 class PrintSolutions {
-    private final List<QuadraticCoefficients> coefficients;
+    private final List<QuadraticCoefficients> equations;
 
-    PrintSolutions(List<QuadraticCoefficients> coefficients) {
-        this.coefficients = coefficients;
+    PrintSolutions(List<QuadraticCoefficients> equations) {
+        this.equations = equations;
     }
 
     void print() {
-        for (QuadraticCoefficients equation : coefficients) {
-            //TODO ArithmeticException is unchecked, change it and define own exceptions when needed
-            try {
-                RealRoots roots = QuadraticRealRootsSolver.findRoots(equation);
-            } catch (ArithmeticException e) {
-                System.out.println("COMPLEX");
-            }
+        for (QuadraticCoefficients equation : equations) {
+            printEquation(equation);
         }
+    }
+
+    private void printEquation(QuadraticCoefficients equation) {
+        try {
+            printRealRoots(equation);
+        } catch (ComplexRootsException e) {
+            System.out.println("COMPLEX");
+        }
+    }
+
+    private void printRealRoots(QuadraticCoefficients equation) throws ComplexRootsException {
+        RealRoots roots = QuadraticRealRootsSolver.findRoots(equation);
+        System.out.println(roots.getSmallerRoot() + " " + roots.getBiggerRoot());
     }
 }
