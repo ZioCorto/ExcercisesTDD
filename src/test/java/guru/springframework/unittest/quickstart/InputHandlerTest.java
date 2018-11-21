@@ -22,31 +22,28 @@ class InputHandlerTest {
         Assertions.assertEquals(handler.parseInputFile(filepath), inputCoefficients);
     }
 
-    //FIXME this test should fail because the exception message is different...
     @Test
     void declaredBiggerThanProvidedTest() {
         InputHandler handler = new InputHandler();
 
         String filepath = "files/DeclaredBiggerThanProvided.txt";
-        Assertions.assertThrows(ArithmeticException.class, () -> handler.parseInputFile(filepath), "WhyIsNotFailing?");
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
     }
 
-    //FIXME this test should fail because the exception message is different...
     @Test
     void declaredSmallerThanProvidedTest() {
         InputHandler handler = new InputHandler();
 
         String filepath = "files/DeclaredSmallerThanProvided.txt";
-        Assertions.assertThrows(ArithmeticException.class, () -> handler.parseInputFile(filepath), "WhyIsNotFailing?");
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
     }
 
-    //FIXME this test should fail because the exception message is different...
     @Test
     void tooFewTestCasesTest() {
         InputHandler handler = new InputHandler();
 
         String filepath = "files/TooFewTestCases.txt";
-        Assertions.assertThrows(ArithmeticException.class, () -> handler.parseInputFile(filepath), "WhyIsNotFailing?");
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
     }
 
     //TODO add many more tests for each coefficient, malformed input, etc.
