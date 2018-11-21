@@ -8,11 +8,11 @@ import java.util.List;
 
 class InputHandler {
     private List<QuadraticCoefficients> coefficients;
-    private InputSanitizer sanitizer;
+    private InputValidator sanitizer;
 
     InputHandler() {
         coefficients = new ArrayList<>();
-        sanitizer = new InputSanitizer();
+        sanitizer = new InputValidator();
     }
 
     //https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
@@ -31,7 +31,7 @@ class InputHandler {
         if (coefficients.size() == declared) {
             return coefficients;
         } else {
-            throw new ArithmeticException("Number of declared test cases and provided test cases does not match!");
+            throw new NotValidInputException("Number of declared test cases and provided test cases does not match!");
         }
     }
 
@@ -45,37 +45,37 @@ class InputHandler {
 
     private Integer builtTestCases(String testCasesStr) {
         Integer testCases = Integer.parseInt(testCasesStr);
-        if (sanitizer.sanitizeTestCases(testCases)) {
+        if (sanitizer.isValidTestCases(testCases)) {
             return testCases;
         } else {
-            throw new ArithmeticException("Number of test cases not allowed!");
+            throw new NotValidInputException("Number of test cases not allowed!");
         }
     }
 
     private Integer buildA(String aStr) {
         Integer a = Integer.parseInt(aStr);
-        if (sanitizer.sanitizeA(a)) {
+        if (sanitizer.isValidA(a)) {
             return a;
         } else {
-            throw new ArithmeticException("Coefficient A not allowed!");
+            throw new NotValidInputException("Coefficient A not allowed!");
         }
     }
 
     private Integer buildB(String bStr) {
         Integer b = Integer.parseInt(bStr);
-        if (sanitizer.sanitizeB(b)) {
+        if (sanitizer.isValidB(b)) {
             return b;
         } else {
-            throw new ArithmeticException("Coefficient B not allowed!");
+            throw new NotValidInputException("Coefficient B not allowed!");
         }
     }
 
     private Integer buildC(String cStr) {
         Integer c = Integer.parseInt(cStr);
-        if (sanitizer.sanitizeC(c)) {
+        if (sanitizer.isValidC(c)) {
             return c;
         } else {
-            throw new ArithmeticException("Coefficient C not allowed!");
+            throw new NotValidInputException("Coefficient C not allowed!");
         }
     }
 }
