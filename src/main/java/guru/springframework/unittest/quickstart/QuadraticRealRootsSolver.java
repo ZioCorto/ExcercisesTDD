@@ -1,11 +1,13 @@
 package guru.springframework.unittest.quickstart;
 
 class QuadraticRealRootsSolver {
-    static RealRoots findRoots(QuadraticCoefficients coefficients) {
+    private static final String COMPLEX_ROOT_MESSAGE = "These coefficients have a complex solution.";
+
+    static RealRoots findRoots(QuadraticCoefficients coefficients) throws ComplexRootsException {
         if (coefficients.getDelta() >= 0) {
             return createRealRootsArray(coefficients);
         } else {
-            throw new ArithmeticException();
+            throw new ComplexRootsException(COMPLEX_ROOT_MESSAGE);
         }
     }
 
