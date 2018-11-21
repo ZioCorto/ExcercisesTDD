@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 class QuadraticRealRootsSolverTest {
 
-    static Stream<Arguments> coefficientsAndRealRootsProvider() {
+    private static Stream<Arguments> coefficientsAndRealRootsProvider() {
         return Stream.of(
                 Arguments.of(new QuadraticCoefficients(1, -5, 6),
                         new RealRoots(2.0, 3.0)),
@@ -27,7 +27,7 @@ class QuadraticRealRootsSolverTest {
         );
     }
 
-    static Stream<Arguments> coefficientsForComplexRootsProvider() {
+    private static Stream<Arguments> coefficientsForComplexRootsProvider() {
         return Stream.of(
                 Arguments.of(new QuadraticCoefficients(1, 1, 1)),
                 Arguments.of(new QuadraticCoefficients(2, 1, 2)),
@@ -38,13 +38,13 @@ class QuadraticRealRootsSolverTest {
 
     @ParameterizedTest
     @MethodSource("coefficientsAndRealRootsProvider")
-    void testRealRoots(QuadraticCoefficients coefficients, RealRoots solution) {
+    void testRealRoots(QuadraticCoefficients coefficients, RealRoots solution) throws ComplexRootsException {
         Assertions.assertEquals(QuadraticRealRootsSolver.findRoots(coefficients), solution);
     }
 
     @ParameterizedTest
     @MethodSource("coefficientsForComplexRootsProvider")
     void testComplexRoots(QuadraticCoefficients coefficients) {
-        Assertions.assertThrows(ArithmeticException.class, () -> QuadraticRealRootsSolver.findRoots(coefficients));
+        Assertions.assertThrows(ComplexRootsException.class, () -> QuadraticRealRootsSolver.findRoots(coefficients));
     }
 }
