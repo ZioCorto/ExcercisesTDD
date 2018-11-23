@@ -15,6 +15,10 @@ class QuadraticCoefficients {
         this.delta = computeDelta();
     }
 
+    private Double computeDelta() {
+        return Math.pow(b, 2) - 4 * a * c;
+    }
+
     Integer getA() {
         return a;
     }
@@ -29,10 +33,6 @@ class QuadraticCoefficients {
 
     Double getDelta() {
         return delta;
-    }
-
-    private Double computeDelta() {
-        return Math.pow(b, 2) - 4 * a * c;
     }
 
     @Override
