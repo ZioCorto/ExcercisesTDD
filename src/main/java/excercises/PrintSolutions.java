@@ -3,6 +3,7 @@ package excercises;
 import java.util.List;
 
 class PrintSolutions {
+    private final static String PRINT_COMPLEX_ROOT = "COMPLEX";
     private final List<QuadraticCoefficients> equations;
 
     PrintSolutions(List<QuadraticCoefficients> equations) {
@@ -19,7 +20,7 @@ class PrintSolutions {
         try {
             printRealRoots(equation);
         } catch (ComplexRootsException e) {
-            System.out.println("COMPLEX");
+            System.out.println(PRINT_COMPLEX_ROOT);
         }
     }
 
