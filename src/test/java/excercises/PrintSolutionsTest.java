@@ -1,5 +1,7 @@
-package guru.springframework.unittest.quickstart;
+package excercises;
 
+import excercises.PrintSolutions;
+import excercises.QuadraticCoefficients;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
