@@ -46,5 +46,45 @@ class InputHandlerTest {
         Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
     }
 
-    //TODO add many more tests for each coefficient, malformed input, etc.
+    @Test
+    void tooManyTestCasesTest() {
+        InputHandler handler = new InputHandler();
+
+        String filepath = "files/TooManyTestCases.txt";
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
+    }
+
+    @Test
+    void aTooSmallTest() {
+        InputHandler handler = new InputHandler();
+
+        String filepath = "files/aTooSmall.txt";
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
+    }
+
+    @Test
+    void aTooBigTest() {
+        InputHandler handler = new InputHandler();
+
+        String filepath = "files/aTooBig.txt";
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
+    }
+
+    @Test
+    void aIsZeroTest() {
+        InputHandler handler = new InputHandler();
+
+        String filepath = "files/aIsZero.txt";
+        Assertions.assertThrows(NotValidInputException.class, () -> handler.parseInputFile(filepath));
+    }
+
+    @Test
+    void aIsNotInteger() {
+        InputHandler handler = new InputHandler();
+
+        String filepath = "files/aIsNotInteger.txt";
+        Assertions.assertThrows(NumberFormatException.class, () -> handler.parseInputFile(filepath));
+    }
+
+    //FIXME let's assume that I did all the test done for coefficient a to b, c and testCases...
 }
