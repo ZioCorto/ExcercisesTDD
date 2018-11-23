@@ -8,23 +8,22 @@ import java.util.List;
 
 class InputHandler {
     private List<QuadraticCoefficients> coefficients;
-    private InputValidator sanitizer;
+    private InputValidator validator;
 
     InputHandler() {
         coefficients = new ArrayList<>();
-        sanitizer = new InputValidator();
+        validator = new InputValidator();
     }
 
-    //https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
     List<QuadraticCoefficients> parseInputFile(String filepath) throws IOException {
-        FileReader reader = new FileReader(filepath);
-        BufferedReader buffer = new BufferedReader(reader);
-        String line = buffer.readLine();
-        Integer testCases = builtTestCases(line);
-        while ((line = buffer.readLine()) != null) {
-            parseLine(line);
+        try (BufferedReader buffer = new BufferedReader(new FileReader(filepath))) {
+            String line = buffer.readLine();
+            Integer testCases = builtTestCases(line);
+            while ((line = buffer.readLine()) != null) {
+                parseLine(line);
+            }
+            return matchDeclaredProvided(testCases);
         }
-        return matchDeclaredProvided(testCases);
     }
 
     private List<QuadraticCoefficients> matchDeclaredProvided(Integer declared) {
@@ -45,7 +44,7 @@ class InputHandler {
 
     private Integer builtTestCases(String testCasesStr) {
         Integer testCases = Integer.parseInt(testCasesStr);
-        if (sanitizer.isValidTestCases(testCases)) {
+        if (validator.isValidTestCases(testCases)) {
             return testCases;
         } else {
             throw new NotValidInputException("Number of test cases not allowed!");
@@ -54,7 +53,7 @@ class InputHandler {
 
     private Integer buildA(String aStr) {
         Integer a = Integer.parseInt(aStr);
-        if (sanitizer.isValidA(a)) {
+        if (validator.isValidA(a)) {
             return a;
         } else {
             throw new NotValidInputException("Coefficient A not allowed!");
@@ -63,7 +62,7 @@ class InputHandler {
 
     private Integer buildB(String bStr) {
         Integer b = Integer.parseInt(bStr);
-        if (sanitizer.isValidB(b)) {
+        if (validator.isValidB(b)) {
             return b;
         } else {
             throw new NotValidInputException("Coefficient B not allowed!");
@@ -72,7 +71,7 @@ class InputHandler {
 
     private Integer buildC(String cStr) {
         Integer c = Integer.parseInt(cStr);
-        if (sanitizer.isValidC(c)) {
+        if (validator.isValidC(c)) {
             return c;
         } else {
             throw new NotValidInputException("Coefficient C not allowed!");
