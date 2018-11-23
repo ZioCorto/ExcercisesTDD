@@ -1,4 +1,4 @@
-package guru.springframework.unittest.quickstart;
+package exercises-tdd;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
