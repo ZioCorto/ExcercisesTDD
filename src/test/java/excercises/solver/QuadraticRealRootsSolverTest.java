@@ -1,9 +1,5 @@
-package excercises;
+package excercises.solver;
 
-import excercises.ComplexRootsException;
-import excercises.QuadraticCoefficients;
-import excercises.QuadraticRealRootsSolver;
-import excercises.RealRoots;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
