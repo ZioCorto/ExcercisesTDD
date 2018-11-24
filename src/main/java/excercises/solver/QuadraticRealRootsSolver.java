@@ -1,4 +1,4 @@
-package excercises;
+package excercises.solver;
 
 class QuadraticRealRootsSolver {
     private static final String COMPLEX_ROOT_MESSAGE = "These coefficients have a complex solution.";

@@ -1,4 +1,4 @@
-package excercises;
+package excercises.solver;
 
 import java.util.Objects;
 

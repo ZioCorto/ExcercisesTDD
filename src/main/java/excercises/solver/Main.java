@@ -1,4 +1,4 @@
-package excercises;
+package excercises.solver;
 
 import java.io.IOException;
 import java.util.List;
